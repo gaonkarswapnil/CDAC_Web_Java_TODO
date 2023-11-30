@@ -6,4 +6,7 @@ public interface DaoInterface<T, K> {
 	Collection<T> getAll();
 	
 	T getOne(K k);
+	
+	void create(T t);
+	
 }

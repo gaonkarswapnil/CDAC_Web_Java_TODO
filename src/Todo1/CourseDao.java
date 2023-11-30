@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
-
 public class CourseDao implements DaoInterface<Course, Integer> {
 
 	@Override
@@ -64,6 +62,33 @@ public class CourseDao implements DaoInterface<Course, Integer> {
 		}
 		
 		return foundCourse;
+	}
+
+	@Override
+	public void create(Course newCourse) {
+		// TODO Auto-generated method stub
+		String subQuery = "insert into course(courseId, title, duration, provider, fees) values (?,?,?,?,?)";
+		
+		try(Connection conn = JdbcUtils.doConnection();
+				PreparedStatement pstmt = conn.prepareStatement(subQuery)) {
+			int courseId = newCourse.getCourseId();
+			String title = newCourse.getTitle();
+			int duration = newCourse.getDuration();
+			String provider = newCourse.getProvider();
+			int fees = newCourse.getFees();
+			
+			pstmt.setInt(1, courseId);
+			pstmt.setString(2, title);
+			pstmt.setInt(3, duration);
+			pstmt.setString(4, provider);
+			pstmt.setInt(5, fees);
+			int count = pstmt.executeUpdate();
+			System.out.println(count+" record added");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

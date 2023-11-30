@@ -26,11 +26,20 @@ public class CRUD_Main {
 		}
 	}
 	
+	private static void createCourse() {
+		// TODO Auto-generated method stub
+		DaoInterface<Course, Integer> idao = new CourseDao();
+		Course newCourse = new Course(106,"Selenium", 30, "Coursera", 45000);
+		idao.create(newCourse);
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//getAllCourse();
-		getOneCourse();
-	}
+//		getOneCourse();
+		createCourse();
+		
+		getAllCourse();
 
+	}
 	
 }
