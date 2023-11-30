@@ -39,11 +39,21 @@ public class CRUD_Main {
 		idao.delete(106);
 	}
 	
+	private static void updateCourse() {
+		// TODO Auto-generated method stub
+		DaoInterface<Course, Integer> idao = new CourseDao();
+		Course course = idao.getOne(104);
+		course.setProvider("Edubridge");
+		course.setDuration(40);
+		idao.update(course);
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		getOneCourse();
 //		createCourse();
-		deleteCourse();
+//		deleteCourse();
+		updateCourse();
 		getAllCourse();
 
 	}

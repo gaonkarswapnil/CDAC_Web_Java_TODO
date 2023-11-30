@@ -107,4 +107,30 @@ public class CourseDao implements DaoInterface<Course, Integer> {
 		
 	}
 
+	@Override
+	public void update(Course updateCourse) {
+		// TODO Auto-generated method stub
+		String subQuery = "update course set title=?, duration=?, provider=?, fees=? where courseId=?";
+		try(Connection conn = JdbcUtils.doConnection();
+				PreparedStatement pstmt = conn.prepareStatement(subQuery)) {
+			int courseId = updateCourse.getCourseId();
+			String title = updateCourse.getTitle();
+			int duration = updateCourse.getDuration();
+			String provider = updateCourse.getProvider();
+			int fees = updateCourse.getFees();
+			
+			pstmt.setString(1, title);
+			pstmt.setInt(2, duration);
+			pstmt.setString(3, provider);
+			pstmt.setInt(4, fees);
+			pstmt.setInt(5, courseId);
+			int count = pstmt.executeUpdate();
+			System.out.println(count+" record updated");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }
