@@ -33,13 +33,18 @@ public class CRUD_Main {
 		idao.create(newCourse);
 	}
 	
+	private static void deleteCourse() {
+		// TODO Auto-generated method stub
+		DaoInterface<Course, Integer> idao = new CourseDao();
+		idao.delete(106);
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		getOneCourse();
-		createCourse();
-		
+//		createCourse();
+		deleteCourse();
 		getAllCourse();
 
 	}
-	
 }

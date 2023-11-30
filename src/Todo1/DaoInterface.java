@@ -9,4 +9,5 @@ public interface DaoInterface<T, K> {
 	
 	void create(T t);
 	
+	void delete(K k);
 }

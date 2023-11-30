@@ -91,4 +91,20 @@ public class CourseDao implements DaoInterface<Course, Integer> {
 		
 	}
 
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		String subQuery = "delete from course where courseId = ?";
+		try(Connection conn = JdbcUtils.doConnection();
+				PreparedStatement pstmt = conn.prepareStatement(subQuery)) {
+			pstmt.setInt(1, id);
+			int count = pstmt.executeUpdate();
+			System.out.println(count+" record deleted");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }
